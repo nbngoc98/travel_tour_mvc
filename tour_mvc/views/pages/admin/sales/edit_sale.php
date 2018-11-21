@@ -62,7 +62,7 @@
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Content</label>
-                  <input type="text" class="form-control" rows="3" placeholder="" name="noidung" value="<?php echo $noidung?>"></input>
+                  <textarea type="text" class="form-control" rows="3" placeholder="" name="noidung"><?php echo $noidung?></textarea>
                 </div>
                 <div class="box-body">
                   <div class="row">

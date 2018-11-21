@@ -4,7 +4,6 @@
 			
 			$sql = "SELECT a.MaCom,b.hoten,tour.TenTour, a.NoiDungCom, a.Vote, a.reply from comment as a  inner JOIN thanhvien as b on a.MaTV = b.MaTV inner JOIN tour ON a.MaTour = tour.MaTour";
 		    $result = mysqli_query($this->connect(), $sql);
-		    mysqli_set_charset($this->connect(),"utf8");	
 			return $result;
 		}
 		public function deleteComment($id){
