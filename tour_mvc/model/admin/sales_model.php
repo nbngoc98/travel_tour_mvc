@@ -76,7 +76,7 @@
 			$imageUpload  = $_FILES['image'];
 		    if (!$imageUpload['error']) {
 		        $imageName = uniqid().'-'.$imageUpload['name'];
-		        $pathSave = 'uploads/sales/';
+		        $pathSave = 'public/uploads/sales/';
 		        move_uploaded_file($imageUpload['tmp_name'], $pathSave.$imageName);
 		        // $image = $imageName;
 		        // Remove anh cu khoi UPLOADS folder
@@ -88,7 +88,7 @@
 		    $imageUploadd  = $_FILES['slideshow'];
 		    if (!$imageUploadd['error']) {
 		        $imageNamee = uniqid().'-'.$imageUploadd['name'];
-		        $pathSavee = 'uploads/sales/shows/';
+		        $pathSavee = 'public/uploads/sales/shows/';
 		        move_uploaded_file($imageUploadd['tmp_name'], $pathSavee.$imageNamee);
 		        // $slideshow = $imageNamee;
 		        // Remove anh cu khoi UPLOADS folder
