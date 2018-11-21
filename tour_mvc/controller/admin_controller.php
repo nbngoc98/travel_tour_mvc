@@ -97,6 +97,8 @@
 						    $diemkhoihanh = $_POST['diemkhoihanh'];
 						    $MaLoai = $_POST['MaLoai'];
 
+						    //đổi định dạng Date
+						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
 							//lấy ngày hiện tại
 						    $created = date("Y-m-d h:i:s");
 						    //Ảnh chính
@@ -114,7 +116,7 @@
 						    move_uploaded_file($imageUploadd['tmp_name'], $pathSavee.$imageNamee);
 
 							$salesModel = new salesModel();
-							$salesModel->doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh, $diemkhoihanh, $created, $imageNamee);
+							$salesModel->doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $created, $imageNamee);
 						}
 						$salesModel = new salesModel();
 						$result = $salesModel->addSales();
@@ -145,6 +147,9 @@
 						    $diemkhoihanh = $_POST['diemkhoihanh'];
 						    $MaLoai = $_POST['MaLoai'];
 
+						    //đổi định dạng Date
+						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
+
 
 							$imageUpload  = $_FILES['image'];
 							$imageName = uniqid().'-'.$imageUpload['name'];
@@ -153,11 +158,12 @@
 							$imageNamee = uniqid().'-'.$imageUploadd['name'];
 							
 							$salesModel = new salesModel();
-							$result = $salesModel->doeditSales( $MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh, $diemkhoihanh, $imageNamee, $id);
+							$result = $salesModel->doeditSales( $MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $imageNamee, $id);
 						}
 						$id = $_GET['id'];
 						$salesModel = new salesModel();
 						$result = $salesModel->editSales($id);
+						$resultt = $salesModel->editSaless($id);
 						include 'views/pages/admin/sales/edit_sale.php';
 						break;
 					default:

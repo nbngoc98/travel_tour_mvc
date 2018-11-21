@@ -1,3 +1,21 @@
+ <?php
+  while ($row = $resultt->fetch_assoc()) {
+      $MaSale     = $row['MaSale'];
+      $title        = $row['title'];
+      $gioithieu    = $row['gioithieu'];
+      $noidung      = $row['noidung'];
+      $gianguoilon  = $row['gianguoilon'];
+      $giatreem     = $row['giatreem'];
+      $ngaykhoihanh = $row['ngaykhoihanh'];
+      $diemkhoihanh = $row['diemkhoihanh'];
+      $MaLoai       = $row['MaLoai'];
+      $imageEdit    = 'public/uploads/sales/'.$row['image'];
+      $image        = $row['image'];
+      $imageEditt    = 'public/uploads/sales/shows/'.$row['slideshow'];
+      $slideshow        = $row['slideshow'];
+    }
+ ?>
+
  <?php include "views/pages/admin/header.php" ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -17,13 +35,7 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-xs-1"><label>ID Sales:</label>
-                      <?php
-                        // while ($row = $result->fetch_assoc()) {
-                        //     $MaSale     = $row['MaSale'];
-                        //     echo "<input type='text' class='form-control' name='MaSale' value='$MaSale'>";
-                        //   }
-                       ?>
-                      <input type="text" class="form-control" placeholder="" name="MaSale">
+                      <input type="text" class="form-control" placeholder="" name="MaSale" value="<?php echo $MaSale?>">
                     </div>
                     <div class="col-xs-2"><label>Type Tour:</label>
                       <div class="form-group">
@@ -40,29 +52,29 @@
                         </div>
                     </div>
                     <div class="col-xs-4"><label>Title:</label>
-                      <input type="text" class="form-control" placeholder="" name="title">
+                      <input type="text" class="form-control" placeholder="" name="title" value="<?php echo $title?>">
                     </div>
                     <div class="col-xs-5"><label>Introduce:</label>
-                      <input type="text" class="form-control" placeholder="" name="gioithieu">
+                      <input type="text" class="form-control" placeholder="" name="gioithieu" value="<?php echo $gioithieu?>">
                     </div>
                   </div>
                 </div>
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Content</label>
-                  <input type="text" class="form-control" rows="3" placeholder="" name="noidung"></input>
+                  <input type="text" class="form-control" rows="3" placeholder="" name="noidung" value="<?php echo $noidung?>"></input>
                 </div>
                 <div class="box-body">
                   <div class="row">
                     <div class="col-xs-2"><label>Adult Price:</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="" name="gianguoilon">
+                            <input type="text" class="form-control" placeholder="" name="gianguoilon" value="<?php echo $gianguoilon?>">
                             <span class="input-group-addon" style="color: red">VNÐ</span>
                         </div>
                     </div>
                     <div class="col-xs-2"><label>Children's Price:</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="" name="giatreem">
+                            <input type="text" class="form-control" placeholder="" name="giatreem" value="<?php echo $giatreem?>">
                             <span class="input-group-addon" style="color: red">VNÐ</span>
                         </div>
                     </div>
@@ -72,22 +84,24 @@
                           <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                           </div>
-                          <input type="text" class="form-control pull-right" id="datepicker" name="ngaykhoihanh">
+                          <input type="text" class="form-control pull-right" id="datepicker" name="ngaykhoihanh" value="<?php echo $ngaykhoihanh?>">
                         </div>
                       </div>
                     </div>
                     <div class="col-xs-5"><label>Departure Location:</label>
-                      <input type="text" class="form-control" placeholder="" name="diemkhoihanh">
+                      <input type="text" class="form-control" placeholder="" name="diemkhoihanh" value="<?php echo $diemkhoihanh?>">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">File Image</label>
                   <input type="file" id="exampleInputFile" name="image">
+                   <img src="<?php  echo $imageEdit?>" width='10%'>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">File Image Slideshow</label>
                   <input type="file" id="exampleInputFile" name="slideshow">
+                   <img src="<?php  echo $imageEditt?>" width='10%'>
                 </div>
 
               <button type="submit" class="btn btn-block btn-primary btn-lg" name="edit_sale">Submit</button>

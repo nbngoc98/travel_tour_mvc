@@ -16,24 +16,26 @@
 			return $result;
 		}
 
-		public function doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh, $diemkhoihanh, $created, $imageNamee){
+		public function doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $created, $imageNamee){
 			mysqli_set_charset($this->connect(),"utf8");
 			$sql = "INSERT INTO sales (MaSale, MaLoai, title,gioithieu, noidung, image, gianguoilon, giatreem, ngaykhoihanh, diemkhoihanh, ngaythemSale, slideshow) 
-            VALUES($MaSale, $MaLoai, '$title', '$gioithieu', '$noidung', '$imageName', '$gianguoilon', '$giatreem', $ngaykhoihanh, '$diemkhoihanh','$created', '$imageNamee')";
+            VALUES($MaSale, $MaLoai, '$title', '$gioithieu', '$noidung', '$imageName', '$gianguoilon', '$giatreem', $ngaykhoihanh_moi, '$diemkhoihanh','$created', '$imageNamee')";
             
 			mysqli_query($this->connect(), $sql);
 			header("Location: admin.php?controller=sales&action=listSales");
 		}
-
+		public function editSaless($id){
+			$sql = "SELECT * FROM sales WHERE MaSale = $id";
+        	$resultt = mysqli_query($this->connect(), $sql);
+        	return $resultt;
+		}
         public function editSales($id){
-        	$sql = "SELECT * FROM sales WHERE MaSale = $id";
-        	$result = mysqli_query($this->connect(), $sql);
-
+        	
 			$sql = "SELECT * FROM loaitour";
         	$result = mysqli_query($this->connect(), $sql);
 			return $result;
         } 
-		public function doeditSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh, $diemkhoihanh, $imageNamee, $id){
+		public function doeditSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $imageNamee, $id){
 			 // $sql = "UPDATE sales SET MaSale = $MaSale, MaLoai = $MaLoai, title = '$title', gioithieu = '$gioithieu', noidung = '$noidung', image = '$image', gianguoilon = '$gianguoilon', giatreem = '$giatreem', ngaykhoihanh = '$ngaykhoihanh', diemkhoihanh = '$diemkhoihanh', slideshow = '$slideshow' WHERE MaSale = $id";
 
 			if($MaSale!=''){
@@ -64,8 +66,8 @@
 				$sql = "UPDATE sales SET giatreem='$giatreem' WHERE MaSale=$id";
 				mysqli_query($this->connect(), $sql);
 			}
-			if($ngaykhoihanh!=''){
-				$sql = "UPDATE sales SET ngaykhoihanh='$ngaykhoihanh' WHERE MaSale=$id";
+			if($ngaykhoihanh_moi!=''){
+				$sql = "UPDATE sales SET ngaykhoihanh='$ngaykhoihanh_moi' WHERE MaSale=$id";
 				mysqli_query($this->connect(), $sql);
 			}
 			if($diemkhoihanh!=''){
@@ -78,9 +80,9 @@
 		        $imageName = uniqid().'-'.$imageUpload['name'];
 		        $pathSave = 'public/uploads/sales/';
 		        move_uploaded_file($imageUpload['tmp_name'], $pathSave.$imageName);
-		        // $image = $imageName;
-		        // Remove anh cu khoi UPLOADS folder
-		        // unlink($imageEdit);
+		        $image = $imageName;
+		        //Remove anh cu khoi UPLOADS folder
+		        unlink($imageEdit);
 		        $sql = "UPDATE sales SET image='$imageName' WHERE MaSale=$id";
 				mysqli_query($this->connect(), $sql);
 		    }
@@ -90,9 +92,9 @@
 		        $imageNamee = uniqid().'-'.$imageUploadd['name'];
 		        $pathSavee = 'public/uploads/sales/shows/';
 		        move_uploaded_file($imageUploadd['tmp_name'], $pathSavee.$imageNamee);
-		        // $slideshow = $imageNamee;
-		        // Remove anh cu khoi UPLOADS folder
-		        // unlink($imageEditt);
+		        $slideshow = $imageNamee;
+		        //Remove anh cu khoi UPLOADS folder
+		        unlink($imageEditt);
 		        $sql = "UPDATE sales SET slideshow='$imageNamee' WHERE MaSale=$id";
 				mysqli_query($this->connect(), $sql);
 		    }
