@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin shop</title>
+	<title>Admin</title>
 </head>
 <body>
 	<?php include 'controller/admin_controller.php';?>
@@ -11,3 +11,4 @@
 	?>
 </body>
 </html>
+	

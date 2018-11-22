@@ -36,44 +36,7 @@
 			return $result;
         } 
 		public function doeditSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $imageNamee, $id){
-			 // $sql = "UPDATE sales SET MaSale = $MaSale, MaLoai = $MaLoai, title = '$title', gioithieu = '$gioithieu', noidung = '$noidung', image = '$image', gianguoilon = '$gianguoilon', giatreem = '$giatreem', ngaykhoihanh = '$ngaykhoihanh', diemkhoihanh = '$diemkhoihanh', slideshow = '$slideshow' WHERE MaSale = $id";
-
-			if($MaSale!=''){
-				$sql = "UPDATE sales SET MaSale='$MaSale' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($MaLoai!=''){
-				$sql = "UPDATE sales SET MaLoai='$MaLoai' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($title!=''){
-				$sql = "UPDATE sales SET title='$title' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($gioithieu!=''){
-				$sql = "UPDATE sales SET gioithieu='$gioithieu' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($noidung!=''){
-				$sql = "UPDATE sales SET noidung='$noidung' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($gianguoilon!=''){
-				$sql = "UPDATE sales SET gianguoilon='$gianguoilon' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($giatreem!=''){
-				$sql = "UPDATE sales SET giatreem='$giatreem' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($ngaykhoihanh_moi!=''){
-				$sql = "UPDATE sales SET ngaykhoihanh='$ngaykhoihanh_moi' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
-			if($diemkhoihanh!=''){
-				$sql = "UPDATE sales SET diemkhoihanh='$diemkhoihanh' WHERE MaSale=$id";
-				mysqli_query($this->connect(), $sql);
-			}
+			 $sql = "UPDATE sales SET MaSale = $MaSale, MaLoai = $MaLoai, title = '$title', gioithieu = '$gioithieu', noidung = '$noidung', gianguoilon = '$gianguoilon', giatreem = '$giatreem', ngaykhoihanh = '$ngaykhoihanh_moi', diemkhoihanh = '$diemkhoihanh' WHERE MaSale = $id";
 
 			$imageUpload  = $_FILES['image'];
 		    if (!$imageUpload['error']) {
