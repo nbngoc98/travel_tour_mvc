@@ -1,5 +1,6 @@
 <?php
-  session_start();
+  // session_start();
+ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,21 +37,24 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
+      
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="public/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Admin</span>
+              <?php
+                // var_dump($_SESSION['e']);
+                // exit();
+              ?>
+              <img src="public/uploads/admin/admin.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php //echo $_SESSION['e'] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="public/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="public/uploads/admin/admin.jpg" class="img-circle" alt="User Image">
 
-                <p>
-                  Alexander Pierce - Web Developer
+                <p><?php //echo $_SESSION['t'] ?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -62,7 +66,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="admin.php?controller=login&action=logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -78,7 +82,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="public/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="public/uploads/admin/admin.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Admin</p>
@@ -110,6 +114,8 @@
           <ul class="treeview-menu">
             <li ><a href="list_tour.php"><i class="fa fa-circle-o"></i> Danh Sách Tour</a></li>
             <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Thêm Tour</a></li>
+            <li><a href="admin.php?controller=tour&action=listDate"><i class="fa fa-circle-o"></i> Danh sách ngày khởi hành</a></li>
+            <li><a href="admin.php?controller=tour&action=addDate"><i class="fa fa-circle-o"></i> Thêm ngày khởi hành</a></li>
           </ul>
         </li>
         <li class="treeview">

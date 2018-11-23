@@ -25,6 +25,12 @@
     $('#datepicker').datepicker({
       autoclose: true
     })
+    $('#datepicker1').datepicker({
+      autoclose: true
+    })
+    $('#datepicker2').datepicker({
+      autoclose: true
+    })
   })
 </script>
 </body>

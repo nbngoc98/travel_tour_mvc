@@ -28,15 +28,18 @@
       if ($result->num_rows > 0) {
          echo"
                     <tr style='width: 100%'>
-                      <th style='width: 5%'>ID Sales</th>
-                      <th style='width: 10%'>Type Tour</th>
+                      <th style='width: 5%'>ID</th>
+                      <th style='width: 5%'>Start Sale</th>
+                      <th style='width: 5%'>Stop Sale</th>
+                      <th style='width: 5%'>Type Tour</th>
                       <th style='width: 10%'>Title</th>
-                      <th style='width: 15%'>Introduce</th>
+                      <th style='width: 8%'>Date</th>
                       <th style='width: 40%'>Content</th>
-                      <th style='width: 10%'>Image</th>
+                      <th style='width: 15%'>Image</th>
                       <th style='width: 10%'>Adult Price</th>
                       <th style='width: 10%'>Children's Price</th>
                       <th style='width: 20%'>Departure Day</th>
+                      <th style='width: 8%'>Departure Date</th>
                       <th style='width: 18%'>Departure Location</th>
                       <th style='width: 18%'>Created</th>
                       <th></th>
@@ -48,14 +51,17 @@
           echo"
                     <tr>
                       <td>" . $row['MaSale']. "</td>
+                      <td>" . $row['startSale']. "</td>
+                      <td>" . $row['stopSale']. "</td>
                       <td>" . $row['TenLoai']. "</td>
                       <td>" . $row['title']. "</td>
-                      <td>" . $row['gioithieu']. "</td>
+                      <td>" . $row['tgian']. "</td>
                       <td>" . $row['noidung']."</td>
                       <td style='width: 20%'><img src='$image' width='70%'></td>
                       <td>" . $row['gianguoilon']."</td>
                       <td>" . $row['giatreem']."</td>
                       <td>" . $row['ngaykhoihanh']."</td>
+                      <td>" . $row['giokhoihanh']."</td>
                       <td>" . $row['diemkhoihanh']."</td>
                       <td>" . $row['ngaythemSale']."</td>
                       <td><a href='admin.php?controller=sales&action=edit&id=$id'><i class='fa fa-fw fa-pencil-square-o'></i></a></td>

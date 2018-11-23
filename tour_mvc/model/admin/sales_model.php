@@ -1,7 +1,7 @@
 <?php 
 	class salesModel extends connectDB {
 		public function listSales() {
-			$sql = "SELECT a.MaSale,b.TenLoai, a.title, a.gioithieu, a.noidung, a.image, a.gianguoilon, a.giatreem, a.ngaykhoihanh, a.diemkhoihanh, a.ngaythemSale from sales as a  inner JOIN loaitour as b on a.MaLoai = b.MaLoai ";
+			$sql = "SELECT a.MaSale,b.TenLoai, a.title, a.tgian, a.noidung, a.image, a.gianguoilon, a.giatreem, a.ngaykhoihanh, a.diemkhoihanh, a.ngaythemSale, a.startSale, a.stopSale, a.giokhoihanh from sales as a  inner JOIN loaitour as b on a.MaLoai = b.MaLoai ";
 		    $result = mysqli_query($this->connect(), $sql);
 			return $result;
 		}
@@ -16,11 +16,11 @@
 			return $result;
 		}
 
-		public function doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $created, $imageNamee){
-			mysqli_set_charset($this->connect(),"utf8");
-			$sql = "INSERT INTO sales (MaSale, MaLoai, title,gioithieu, noidung, image, gianguoilon, giatreem, ngaykhoihanh, diemkhoihanh, ngaythemSale, slideshow) 
-            VALUES($MaSale, $MaLoai, '$title', '$gioithieu', '$noidung', '$imageName', '$gianguoilon', '$giatreem', $ngaykhoihanh_moi, '$diemkhoihanh','$created', '$imageNamee')";
-            
+		public function doaddSales($MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $created, $imageNamee, $startSale_new, $stopSale_new){
+			$sql = "INSERT INTO sales (MaSale, MaLoai, title, tgian, noidung, image, gianguoilon, giatreem, ngaykhoihanh, giokhoihanh, diemkhoihanh, ngaythemSale, slideshow, startSale, stopSale) 
+            VALUES($MaSale, $MaLoai, '$title', '$tgian', '$noidung', '$imageName', '$gianguoilon', '$giatreem', '$ngaykhoihanh_moi', '$giokhoihanh', '$diemkhoihanh','$created', '$imageNamee', '$startSale_new', '$stopSale_new')";
+            // var_dump($MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $created, $imageNamee, $startSale_new, $stopSale_new);
+            // exit();
 			mysqli_query($this->connect(), $sql);
 			header("Location: admin.php?controller=sales&action=listSales");
 		}
@@ -35,8 +35,8 @@
         	$result = mysqli_query($this->connect(), $sql);
 			return $result;
         } 
-		public function doeditSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $imageNamee, $id){
-			 $sql = "UPDATE sales SET MaSale = $MaSale, MaLoai = $MaLoai, title = '$title', gioithieu = '$gioithieu', noidung = '$noidung', gianguoilon = '$gianguoilon', giatreem = '$giatreem', ngaykhoihanh = '$ngaykhoihanh_moi', diemkhoihanh = '$diemkhoihanh' WHERE MaSale = $id";
+		public function doeditSales($MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $imageNamee, $startSale_new, $stopSale_new, $id){
+			 $sql = "UPDATE sales SET MaSale = $MaSale, MaLoai = $MaLoai, title = '$title', tgian = '$tgian', noidung = '$noidung', gianguoilon = '$gianguoilon', giatreem = '$giatreem', ngaykhoihanh = '$ngaykhoihanh_moi', giokhoihanh ='$giokhoihanh' , diemkhoihanh = '$diemkhoihanh', startSale = '$startSale_new', stopSale = '$stopSale_new' WHERE MaSale = $id";
 
 			$imageUpload  = $_FILES['image'];
 		    if (!$imageUpload['error']) {
@@ -61,6 +61,8 @@
 		        $sql = "UPDATE sales SET slideshow='$imageNamee' WHERE MaSale=$id";
 				mysqli_query($this->connect(), $sql);
 		    }
+		    // var_dump($MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $imageNamee, $startSale_new, $stopSale_new);
+      //       exit();
 		if (mysqli_query($this->connect(), $sql) == TRUE) {
 			header("Location: admin.php?controller=sales&action=listSales");
 		}	

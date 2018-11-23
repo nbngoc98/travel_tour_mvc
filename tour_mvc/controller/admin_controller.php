@@ -4,12 +4,65 @@
 	include 'model/admin/user_model.php';
 	include 'model/admin/phanhoi_model.php';
 	include 'model/admin/sales_model.php';
+	include 'model/admin/login_model.php';
+	include 'model/admin/tour_model.php';
+
 	class HomeController {
 		//public function xulyYeucau();
 		public function handleReqquest() {
-			$controller = isset($_GET['controller'])?$_GET['controller']:'home';
-			$action = isset($_GET['action'])?$_GET['action']:'home';
-			if ($controller == 'home') {
+			$controller = isset($_GET['controller'])?$_GET['controller']:'login';
+			$action = isset($_GET['action'])?$_GET['action']:'login';
+			if ($controller == 'login') {
+				switch ($action) {
+					case 'login':
+						if(isset($_POST["Submit"])){
+							//Validate form
+							$user_name = $_POST['username'];
+							$errUsername ="";	
+							$pass = $_POST['password'];
+							$errPass ="";
+							$check = true;
+							if($user_name == ""){
+								$check = false;
+								$errUsername = "Bạn chưa nhập Username!";
+							} else {
+								$errUsername ="";
+							}
+							if($pass == ""){
+								$check = false;
+								$errPass = "Bạn chưa nhập Password!";
+							} else {
+								$errPass ="";
+							}
+						    if ($check) {
+						    		$pass1 = md5($pass);
+						    		$loginModel = new loginModel();
+									$result = $loginModel->login($user_name, $pass1);
+									if ($result->num_rows == 0) {
+									?><script type="text/javascript">alert("Đăng nhập không thành công - Mời kiểm tra lại!")</script>;<?php
+									} else {
+						     				?>
+												<script language="javascript">
+												window.alert("Chúc mừng bạn đã đăng nhập thành công!");
+												window.location="admin.php?controller=home&action=home"
+												</script>
+											<?php
+												$_SESSION['e']=  $user_name;
+												$_SESSION['b']= $pass1;
+												exit();
+											}
+								}
+						}
+						include 'views/pages/admin/login/login.php';
+						break;
+					case 'logout':
+  						include 'views/pages/admin/login/logout.php';
+						break;
+					default:
+						# code...
+						break;
+				}
+			}elseif($controller == 'home') {
 				switch ($action) {
 					case 'home':
 						// lay thong tin trang chu
@@ -89,16 +142,21 @@
 						if (isset($_POST['add_sale'])) {
 							$MaSale = $_POST['MaSale'];
 						    $title = $_POST['title'];
-						    $gioithieu = $_POST['gioithieu'];
+						    $tgian = $_POST['tgian'];
 						    $noidung = $_POST['noidung'];
 						    $gianguoilon = $_POST['gianguoilon'];
 						    $giatreem = $_POST['giatreem'];
 						    $ngaykhoihanh = $_POST['ngaykhoihanh'];
+						    $giokhoihanh = $_POST['giokhoihanh'];
 						    $diemkhoihanh = $_POST['diemkhoihanh'];
+						    $startSale = $_POST['startSale'];
+						    $stopSale = $_POST['stopSale'];
 						    $MaLoai = $_POST['MaLoai'];
 
 						    //đổi định dạng Date
 						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
+						    $startSale_new = date("Y-m-d", strtotime($startSale));
+						    $stopSale_new = date("Y-m-d", strtotime($stopSale));
 							//lấy ngày hiện tại
 						    $created = date("Y-m-d h:i:s");
 						    //Ảnh chính
@@ -116,7 +174,7 @@
 						    move_uploaded_file($imageUploadd['tmp_name'], $pathSavee.$imageNamee);
 
 							$salesModel = new salesModel();
-							$salesModel->doaddSales($MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $created, $imageNamee);
+							$salesModel->doaddSales($MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $created, $imageNamee, $startSale_new, $stopSale_new);
 						}
 						$salesModel = new salesModel();
 						$result = $salesModel->addSales();
@@ -139,17 +197,21 @@
 							$id = $_GET['id'];
 							$MaSale = $_POST['MaSale'];
 						    $title = $_POST['title'];
-						    $gioithieu = $_POST['gioithieu'];
+						    $tgian = $_POST['tgian'];
 						    $noidung = $_POST['noidung'];
 						    $gianguoilon = $_POST['gianguoilon'];
 						    $giatreem = $_POST['giatreem'];
 						    $ngaykhoihanh = $_POST['ngaykhoihanh'];
+						    $giokhoihanh = $_POST['giokhoihanh'];
 						    $diemkhoihanh = $_POST['diemkhoihanh'];
+						    $startSale = $_POST['startSale'];
+						    $stopSale = $_POST['stopSale'];
 						    $MaLoai = $_POST['MaLoai'];
 
 						    //đổi định dạng Date
 						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
-
+						    $startSale_new = date("Y-m-d", strtotime($startSale));
+						    $stopSale_new = date("Y-m-d", strtotime($stopSale));
 
 							$imageUpload  = $_FILES['image'];
 							$imageName = uniqid().'-'.$imageUpload['name'];
@@ -158,13 +220,68 @@
 							$imageNamee = uniqid().'-'.$imageUploadd['name'];
 							
 							$salesModel = new salesModel();
-							$result = $salesModel->doeditSales( $MaSale, $MaLoai, $title, $gioithieu, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $diemkhoihanh, $imageNamee, $id);
+							$result = $salesModel->doeditSales( $MaSale, $MaLoai, $title, $tgian, $noidung, $imageName, $gianguoilon, $giatreem, $ngaykhoihanh_moi, $giokhoihanh, $diemkhoihanh, $imageNamee, $startSale_new, $stopSale_new, $id);
 						}
 						$id = $_GET['id'];
 						$salesModel = new salesModel();
 						$result = $salesModel->editSales($id);
 						$resultt = $salesModel->editSaless($id);
 						include 'views/pages/admin/sales/edit_sale.php';
+						break;
+					default:
+						# code...
+						break;
+				}
+			}elseif($controller == 'tour') {
+				switch ($action) {
+					case 'listDate':
+						$tourModel = new tourModel();
+						$result = $tourModel->listDate();
+						include 'views/pages/admin/tour/date.php';
+						break;
+					case 'addDate':
+						if (isset($_POST['add_date'])) {
+							$MaTour = $_POST['MaTour'];
+						    $ngaykhoihanh = $_POST['ngaykhoihanh'];
+						    //đổi định dạng Date
+						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
+
+							$tourModel = new tourModel();
+							$tourModel->doaddDate($MaTour, $ngaykhoihanh_moi);
+						}
+						$tourModel = new tourModel();
+						$result = $tourModel->addDate();
+						include 'views/pages/admin/tour/add_date.php';
+						break;
+					case 'deleteDate':
+						# code...
+						$id = $_GET['id'];
+						$tourModel = new tourModel();
+						$tourModel->deleteDate($id);
+						break;
+					// case 'edit':
+					// 	$id = $_GET['id'];
+					// 	$salesModel = new salesModel();
+					// 	$result = $salesModel->editSales($id);
+					// 	include 'views/pages/admin/sales/edit_sale.php';
+					// 	break;
+					case 'editDate':
+						if (isset($_POST['edit_date'])) {
+							$id = $_GET['id'];
+							$MaTour = $_POST['MaTour'];
+						    $ngaykhoihanh = $_POST['ngaykhoihanh'];
+
+						    //đổi định dạng Date
+						    $ngaykhoihanh_moi = date("Y-m-d", strtotime($ngaykhoihanh));
+							
+							$tourModel = new tourModel();
+							$result = $tourModel->doeditDate($MaTour, $ngaykhoihanh_moi, $id);
+						}
+						$id = $_GET['id'];
+						$tourModel = new tourModel();
+						$result = $tourModel->editDate($id);
+						$resultt = $tourModel->editDatee($id);
+						include 'views/pages/admin/tour/edit_date.php';
 						break;
 					default:
 						# code...
