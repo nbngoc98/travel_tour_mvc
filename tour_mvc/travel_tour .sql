@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2018 at 01:12 PM
+-- Generation Time: Nov 28, 2018 at 05:43 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -118,7 +118,7 @@ INSERT INTO `dattour` (`MaDat`, `MaTV`, `ngaydat`) VALUES
 
 CREATE TABLE `khoihanh` (
   `MaNgaykh` int(25) NOT NULL,
-  `MaTour` int(25) NOT NULL,
+  `MaTour` int(20) NOT NULL,
   `ngaykhoihanh` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,8 +127,8 @@ CREATE TABLE `khoihanh` (
 --
 
 INSERT INTO `khoihanh` (`MaNgaykh`, `MaTour`, `ngaykhoihanh`) VALUES
-(1, 1, '2018-11-27'),
-(2, 1, '2018-11-28');
+(1, 1, '2018-11-29'),
+(7, 6, '2018-11-30');
 
 -- --------------------------------------------------------
 
@@ -202,10 +202,9 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`MaSale`, `MaLoai`, `title`, `tgian`, `noidung`, `image`, `gianguoilon`, `giatreem`, `ngaykhoihanh`, `giokhoihanh`, `diemkhoihanh`, `ngaythemSale`, `slideshow`, `startSale`, `stopSale`) VALUES
-(1, 1, 'Hà Nội - Lào Cai', '3 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô ', '5bf4d9ba1f286-a.jpg', '7500000', 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-20 06:17:47', '5bf4d9ba27237-a.jpg', '2018-11-13', '2018-11-11'),
-(2, 1, 'Hà Nội - Lào Cai ', '2 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf4e3f30b00d-a.jpg', '4200000', 546456, '2018-12-18', '8:00', 'Sài Gòn', '2018-11-21 05:49:55', '5bf4e3f30b19b-a.jpg', '2018-11-05', '2018-11-19'),
-(3, 2, 'Hà Nội - Lào Cai - Sapaa', '3 ngày', '- Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và lúa.', '5bfa247548fea-a.jpg', '7500000', 3500000, '2018-11-30', '8:00', 'Sài Gòn', '2018-11-25 05:26:29', '5bfa2475497e8-a.jpg', '2018-11-20', '2018-11-21'),
-(4, 1, 'Hà Nội - Lào Cai - Sapaa', '4 ngày', 'Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf91b0731304-a.jpg', '3100000', 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-21 05:04:22', '5bf4d9c17e20a-a.jpg', '2018-11-19', '2018-11-12');
+(1, 2, 'Hà Nội - Lào Cai', '3 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô ', '5bfeb257c2195-slide1.jpg', '7500000', 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-20 06:17:47', '5bfeb0eec0a01-slide1.jpg', '2018-11-13', '2018-11-11'),
+(2, 1, 'Hà Nội - Lào Cai ', '2 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bfeb263a96b6-slide1.jpg', '4200000', 546456, '2018-12-18', '8:00', 'Sài Gòn', '2018-11-21 05:49:55', '5bfeb22431d40-slide1.jpg', '2018-11-05', '2018-11-19'),
+(3, 1, 'Hà Nội - Lào Cai - Sapaa', '3 ngày', '- Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và lúa.', '5bfeb26fdf9ad-slide1.jpg', '8500000', 3500000, '2018-11-30', '8:00', 'Sài Gòn', '2018-11-25 05:26:29', '5bfeb23157910-slide1.jpg', '2018-11-20', '2018-11-21');
 
 -- --------------------------------------------------------
 
@@ -277,7 +276,7 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`MaTour`, `MaLoai`, `TenTour`, `tgian`, `NoiDungTour`, `AnhTour`, `GiaNguoiLon`, `GiaTreEm`, `DiemKhoiHanh`, `NgayThem`) VALUES
-(1, 1, 'Đà Lạt - Giao Lưu Văn Hoá Cồng Chiêng Tây Nguyên', '3 ', 'Quý khách tập trung tại Vietravel (190 Pasteur, Quận 3), khởi hành đi Đà Lạt. Trên đường đi tham quan:\r\n- Thác Đam B’ri: một trong những thác nước đẹp và cao nhất tại cao nguyên Bảo Lộc. Ăn trưa tại Khu du lịch. \r\n- Nhà thờ Domain De Marie: theo dòng Nữ tu Bác Ái, với kiến trúc là sự kết hợp hài hòa giữa phương Đông và phương Tây cùng vườn hoa được chăm chút kỹ đã tạo nên sức hút cho ngôi nhà thờ.\r\nBuổi tối, Quý khách tự do thưởng thức cà phê trong không khí se lạnh của Đà Lạt, ngắm cảnh Hồ Xuân Hương về đêm. \r\nNghỉ đêm tại Đà Lạt.\r\n\r\n', '5bfe82e6882b4-a.jpg', 1500000, 1000000, 'Đà Nẵng', '2018-11-16 01:10:18');
+(1, 1, 'Đà Lạt - Đường Hầm Điêu Khắc Đất Sét ', '2 ngày', 'Quý khách tập trung tại Vietravel (190 Pasteur, Q3, Tp.HCM), khởi hành đi Đà Lạt. Trên đường đi Quý khách dừng chân ăn sáng. Tiếp tục hành trình đến Đà Lạt, đoàn dừng ăn trưa tại khu vực Tâm Châu. Đến nơi, đoàn tham quan Nhà thờ Domain De Marie. Ăn tối và nhận phòng khách sạn. Buổi tối, Quý khách tự do tham quan Hồ Xuân Hương, thưởng thức cà phê trong không khí se lạnh của phố núi Đà Lạt. Nghỉ đêm tại Đà Lạt.\r\n\r\n', '5bfec500e39c5-', 8500000, 3500000, 'Sài Gòn', '2018-11-28 05:40:32');
 
 --
 -- Indexes for dumped tables
@@ -381,7 +380,7 @@ ALTER TABLE `dattour`
 -- AUTO_INCREMENT for table `khoihanh`
 --
 ALTER TABLE `khoihanh`
-  MODIFY `MaNgaykh` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaNgaykh` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `phanhoi`
@@ -399,7 +398,7 @@ ALTER TABLE `thanhvien`
 -- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `MaTinTuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaTinTuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

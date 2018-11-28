@@ -76,7 +76,7 @@
                       <div class="box-body">
                         <div class="form-group">
                           <label>Content</label>
-                          <input type="text" class="form-control" rows="4" placeholder="" name="noidung">
+                          <textarea type="text" class="form-control" rows="4" placeholder="" name="noidung"></textarea>
                         </div>
                         <div class="row">
                           <div class="col-xs-3"><label>Adult Price:</label>
