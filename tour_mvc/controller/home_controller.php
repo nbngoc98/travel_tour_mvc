@@ -11,9 +11,10 @@
 						// lay thong tin trang chu
 						// Model lay thong tin trang chu
 						$homeModel = new homeModel();
-						$result = $homeModel->getHomepage();
+						$result1 = $homeModel->getHomepage();
+						$result2 = $homeModel->getHomepage1();
 						//Do du lieu ra views
-						include 'views/templates/home/home.php';
+						include 'views/pages/home/home.php';
 						break;
 					default:
 						# code...

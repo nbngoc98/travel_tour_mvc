@@ -48,6 +48,14 @@
         while ($row = $result->fetch_assoc()) {
           $id = $row['MaSale'];
           $image = 'public/uploads/sales/'.$row['image'];
+          $noidung = $row['noidung'];
+          $len = strlen($noidung);
+          if($len > 100){
+            $noidung1 = substr($noidung,  0, 100);
+            $noidung2 = $noidung1." ...";
+          }else if($len < 100){
+            $noidung2 = substr($noidung,  0, 100);     
+          }
           echo"
                     <tr>
                       <td>" . $row['MaSale']. "</td>
@@ -56,7 +64,7 @@
                       <td>" . $row['TenLoai']. "</td>
                       <td>" . $row['title']. "</td>
                       <td>" . $row['tgian']. "</td>
-                      <td>" . $row['noidung']."</td>
+                      <td>" . $noidung2."</td>
                       <td style='width: 20%'><img src='$image' width='70%'></td>
                       <td>" . $row['gianguoilon']."</td>
                       <td>" . $row['giatreem']."</td>

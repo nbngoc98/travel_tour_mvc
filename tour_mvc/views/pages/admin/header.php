@@ -1,7 +1,4 @@
-<?php
-  // session_start();
- 
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,18 +40,18 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <?php
-                // var_dump($_SESSION['e']);
+                // var_dump($_SESSION['u']);
                 // exit();
               ?>
               <img src="public/uploads/admin/admin.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php //echo $_SESSION['e'] ?></span>
+              <span class="hidden-xs"><?php echo $_SESSION['u'] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="public/uploads/admin/admin.jpg" class="img-circle" alt="User Image">
 
-                <p><?php //echo $_SESSION['t'] ?>
+                <p><?php echo $_SESSION['u'] ?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -112,8 +109,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li ><a href="list_tour.php"><i class="fa fa-circle-o"></i> Danh Sách Tour</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Thêm Tour</a></li>
+             <li ><a href="admin.php?controller=tour&action=listTour"><i class="fa fa-circle-o"></i> Danh Sách Tour</a></li>
+            <li><a href="admin.php?controller=tour&action=addTour"><i class="fa fa-circle-o"></i> Thêm Tour</a></li>
             <li><a href="admin.php?controller=tour&action=listDate"><i class="fa fa-circle-o"></i> Danh sách ngày khởi hành</a></li>
             <li><a href="admin.php?controller=tour&action=addDate"><i class="fa fa-circle-o"></i> Thêm ngày khởi hành</a></li>
           </ul>
@@ -127,8 +124,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="list_product.php"><i class="fa fa-circle-o"></i> Danh sách Loại Tour</a></li>
-            <li><a href="add_sp.php"><i class="fa fa-circle-o"></i> Thêm Loại Tour</a></li>
+            <li><a href="admin.php?controller=loaitour&action=listLoaiTour"><i class="fa fa-circle-o"></i> Danh sách Loại Tour</a></li>
+            <li><a href="admin.php?controller=loaitour&action=addLoaiTour"><i class="fa fa-circle-o"></i> Thêm Loại Tour</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -140,8 +137,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="list_product.php"><i class="fa fa-circle-o"></i> Danh sách Thành Viên</a></li>
-            <li><a href="add_sp.php"><i class="fa fa-circle-o"></i> Thêm sản phẩm</a></li>
+            <li><a href="admin.php?controller=thanhVien&action=listTV"><i class="fa fa-circle-o"></i> Danh sách Thành Viên</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -153,8 +149,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Danh sách User</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Thêm User</a></li>
+            <li><a href="admin.php?controller=tintuc&action=list_tintuc"><i class="fa fa-circle-o"></i> Danh Sách Tin Tức</a></li>
+            <li><a href="admin.php?controller=tintuc&action=them_tintuc"><i class="fa fa-circle-o"></i> Thêm Tin Tức</a></li>
           </ul>
         </li>
         <li>

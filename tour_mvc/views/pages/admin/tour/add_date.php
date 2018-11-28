@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit Departure Date</h3>
+              <h3 class="box-title">Add Departure Date</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

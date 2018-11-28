@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2018 at 02:09 PM
+-- Generation Time: Nov 28, 2018 at 01:12 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -52,8 +52,8 @@ INSERT INTO `admin` (`id`, `userAdmin`, `passAdmin`, `emailAdmin`, `avata`, `sta
 
 CREATE TABLE `chitietdat` (
   `MaDat` int(20) NOT NULL,
-  `MaTour` int(11) NOT NULL,
-  `MaSale` int(20) NOT NULL,
+  `MaTour` int(11) DEFAULT NULL,
+  `MaSale` int(20) DEFAULT NULL,
   `NgayDi` date NOT NULL,
   `songuoilon` int(20) DEFAULT NULL,
   `sotreem` int(20) DEFAULT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE `chitietdat` (
 --
 
 INSERT INTO `chitietdat` (`MaDat`, `MaTour`, `MaSale`, `NgayDi`, `songuoilon`, `sotreem`, `sotrenho`, `sotienThanhToan`, `xacnhan`) VALUES
-(1, 0, 0, '2018-11-24', 2, 1, NULL, 8000000, 'yes');
+(1, 1, NULL, '2018-11-24', 2, 1, NULL, 8000000, 'yes');
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`MaCom`, `MaTV`, `MaTour`, `NoiDungCom`, `Vote`, `reply`) VALUES
-(1, 1, 0, 'Các mẫu website bán tour đều có thể cho phép các doanh nghiệp công ty tùy ý cấu hình các tour du lịch về giá cả, thời gian, điểm đến, điểm đi, lịch trình chuyến ...', 5, '');
+(1, 1, 1, 'Các mẫu website bán tour đều có thể cho phép các doanh nghiệp công ty tùy ý cấu hình các tour du lịch về giá cả, thời gian, điểm đến, điểm đi, lịch trình chuyến ...', 5, '');
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,8 @@ CREATE TABLE `khoihanh` (
 --
 
 INSERT INTO `khoihanh` (`MaNgaykh`, `MaTour`, `ngaykhoihanh`) VALUES
-(1, 1, '2018-11-27');
+(1, 1, '2018-11-27'),
+(2, 1, '2018-11-28');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,7 @@ CREATE TABLE `sales` (
   `tgian` varchar(255) NOT NULL,
   `noidung` text NOT NULL,
   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `gianguoilon` int(11) NOT NULL,
+  `gianguoilon` decimal(10,0) NOT NULL,
   `giatreem` int(11) NOT NULL,
   `ngaykhoihanh` date NOT NULL,
   `giokhoihanh` varchar(255) NOT NULL,
@@ -201,9 +202,10 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`MaSale`, `MaLoai`, `title`, `tgian`, `noidung`, `image`, `gianguoilon`, `giatreem`, `ngaykhoihanh`, `giokhoihanh`, `diemkhoihanh`, `ngaythemSale`, `slideshow`, `startSale`, `stopSale`) VALUES
-(1, 1, 'Hà Nội - Lào Cai', '3 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô ', '5bf4d9ba1f286-a.jpg', 546546, 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-20 06:17:47', '5bf4d9ba27237-a.jpg', '2018-11-13', '2018-11-11'),
-(2, 1, 'Hà Nội - Lào Cai ', '2 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf4e3f30b00d-a.jpg', 546546, 546456, '2018-12-18', '8:00', 'Sài Gònn', '2018-11-21 05:49:55', '5bf4e3f30b19b-a.jpg', '2018-11-05', '2018-11-19'),
-(4, 1, 'Hà Nội - Lào Cai - Sapaa', '4 ngày', 'Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf619e7a8a16-5bf4e3f30b00d-a.jpg', 546546, 879678, '1970-01-01', '9:00', 'Sài Gòn', '2018-11-21 05:04:22', '5bf4d9c17e20a-a.jpg', '2018-11-19', '2018-11-12');
+(1, 1, 'Hà Nội - Lào Cai', '3 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô ', '5bf4d9ba1f286-a.jpg', '7500000', 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-20 06:17:47', '5bf4d9ba27237-a.jpg', '2018-11-13', '2018-11-11'),
+(2, 1, 'Hà Nội - Lào Cai ', '2 ngày', ' Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf4e3f30b00d-a.jpg', '4200000', 546456, '2018-12-18', '8:00', 'Sài Gòn', '2018-11-21 05:49:55', '5bf4e3f30b19b-a.jpg', '2018-11-05', '2018-11-19'),
+(3, 2, 'Hà Nội - Lào Cai - Sapaa', '3 ngày', '- Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và lúa.', '5bfa247548fea-a.jpg', '7500000', 3500000, '2018-11-30', '8:00', 'Sài Gòn', '2018-11-25 05:26:29', '5bfa2475497e8-a.jpg', '2018-11-20', '2018-11-21'),
+(4, 1, 'Hà Nội - Lào Cai - Sapaa', '4 ngày', 'Bản Tả Van - Lao Chải đường vào Tả Van quanh co một bên là thung lũng Mường Hoa với những thửa ruộng bậc thang màu mỡ được tổ điểm bởi màu xanh của ngô và ', '5bf91b0731304-a.jpg', '3100000', 879678, '1970-01-01', '8:00', 'Sài Gòn', '2018-11-21 05:04:22', '5bf4d9c17e20a-a.jpg', '2018-11-19', '2018-11-12');
 
 -- --------------------------------------------------------
 
@@ -239,7 +241,7 @@ INSERT INTO `thanhvien` (`MaTV`, `usename`, `passTV`, `hoten`, `gioitinh`, `emai
 CREATE TABLE `tintuc` (
   `MaTinTuc` int(11) NOT NULL,
   `TenTinTuc` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `AnhTT` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `AnhTT` varchar(255) CHARACTER SET utf8 NOT NULL,
   `NoiDung` text CHARACTER SET utf8 NOT NULL,
   `NgayGuiTT` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -249,7 +251,7 @@ CREATE TABLE `tintuc` (
 --
 
 INSERT INTO `tintuc` (`MaTinTuc`, `TenTinTuc`, `AnhTT`, `NoiDung`, `NgayGuiTT`) VALUES
-(1, 'DU XUÂN HỘI AN, VỀ MIỀN KÝ ỨC ', 'tin1.jpg', 'Trò diễn bài chòi Hội An sử dụng 4 làn điệu chính: Xuân nữ, Cổ bản, Xàng xê, hò Quảng. Chỉ với hai nhạc cụ là trống cái và đàn nhị, nhưng với sự phối hợp ăn ý của các nhạc công, cùng diễn xướng đầy say mê nhiệt tình của các anh hiệu, đêm hội bài chòi khiến cuộc vui náo nức.\r\n\r\nDu xuân Hội An, về miền ký ức bạn sẽ được thưởng thức giọng hát ngọt ngào truyền cảm, ứng đối tài tình qua những câu ca dao, bài thơ, bài vè gần gũi với đời thường, ca ngợi tình làng nghĩa xóm hay phê phán những thói hư tật xấu chính là nét hấp dẫn đối với người chơi bài chòi. Từ tính chất dân gian, mộc mạc như vậy, dần dần bài chòi đã phát triển thành nghệ thuật quần chúng.\r\n\r\nNăm 1996, nhà hát nghệ thuật cổ truyền Hội An thuộc Trung tâm văn hóa - thể thao Hội An ra đời là dấu mốc đưa bài chòi Hội An lên sân khấu biểu diễn. Hai năm sau, không gian diễn xướng của bài chòi Hội An được mang ra phố trình diễn trong chương trình “Đêm phố cổ”. Từ một thú chơi dân dã, món ăn tinh thần của người dân, nghệ thuật bài chòi chính thức được UNESCO công nhận là Di sản văn hóa phi vật thể vào ngày 7/12/2017.\r\n\r\n', '2018-11-14 00:00:00');
+(1, 'DU XUÂN HỘI AN, VỀ MIỀN KÝ ỨC ', '5bfbab6a25337-a.jpg', 'Trò diễn bài chòi Hội An sử dụng 4 làn điệu chính: Xuân nữ, Cổ bản, Xàng xê, hò Quảng. Chỉ với hai nhạc cụ là trống cái và đàn nhị, nhưng với sự phối hợp ăn ý của các nhạc công, cùng diễn xướng đầy say mê nhiệt tình của các anh hiệu, đêm hội bài chòi khiến cuộc vui náo nức.\r\n\r\nDu xuân Hội An, về miền ký ức bạn sẽ được thưởng thức giọng hát ngọt ngào truyền cảm, ứng đối tài tình qua những câu ca dao, bài thơ, bài vè gần gũi với đời thường, ca ngợi tình làng nghĩa xóm hay phê phán những thói hư tật xấu chính là nét hấp dẫn đối với người chơi bài chòi. Từ tính chất dân gian, mộc mạc như vậy, dần dần bài chòi đã phát triển thành nghệ thuật quần chúng.\r\n\r\nNăm 1996, nhà hát nghệ thuật cổ truyền Hội An thuộc Trung tâm văn hóa - thể thao Hội An ra đời là dấu mốc đưa bài chòi Hội An lên sân khấu biểu diễn. Hai năm sau, không gian diễn xướng của bài chòi Hội An được mang ra phố trình diễn trong chương trình “Đêm phố cổ”. Từ một thú chơi dân dã, món ăn tinh thần của người dân, nghệ thuật bài chòi chính thức được UNESCO công nhận là Di sản văn hóa phi vật thể vào ngày 7/12/2017.\r\n\r\n', '2018-11-26 09:14:34');
 
 -- --------------------------------------------------------
 
@@ -275,7 +277,7 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`MaTour`, `MaLoai`, `TenTour`, `tgian`, `NoiDungTour`, `AnhTour`, `GiaNguoiLon`, `GiaTreEm`, `DiemKhoiHanh`, `NgayThem`) VALUES
-(1, 1, 'Đà Lạt - Giao Lưu Văn Hoá Cồng Chiêng Tây Nguyên\r\n', '3 ngày\r\n', 'Quý khách tập trung tại Vietravel (190 Pasteur, Quận 3), khởi hành đi Đà Lạt. Trên đường đi tham quan:\r\n- Thác Đam B’ri: một trong những thác nước đẹp và cao nhất tại cao nguyên Bảo Lộc. Ăn trưa tại Khu du lịch. \r\n- Nhà thờ Domain De Marie: theo dòng Nữ tu Bác Ái, với kiến trúc là sự kết hợp hài hòa giữa phương Đông và phương Tây cùng vườn hoa được chăm chút kỹ đã tạo nên sức hút cho ngôi nhà thờ.\r\nBuổi tối, Quý khách tự do thưởng thức cà phê trong không khí se lạnh của Đà Lạt, ngắm cảnh Hồ Xuân Hương về đêm. \r\nNghỉ đêm tại Đà Lạt.\r\n\r\n', 'tour1.jpg', 1500000, 1000000, 'Đà Nẵng', '2018-11-16 01:10:18');
+(1, 1, 'Đà Lạt - Giao Lưu Văn Hoá Cồng Chiêng Tây Nguyên', '3 ', 'Quý khách tập trung tại Vietravel (190 Pasteur, Quận 3), khởi hành đi Đà Lạt. Trên đường đi tham quan:\r\n- Thác Đam B’ri: một trong những thác nước đẹp và cao nhất tại cao nguyên Bảo Lộc. Ăn trưa tại Khu du lịch. \r\n- Nhà thờ Domain De Marie: theo dòng Nữ tu Bác Ái, với kiến trúc là sự kết hợp hài hòa giữa phương Đông và phương Tây cùng vườn hoa được chăm chút kỹ đã tạo nên sức hút cho ngôi nhà thờ.\r\nBuổi tối, Quý khách tự do thưởng thức cà phê trong không khí se lạnh của Đà Lạt, ngắm cảnh Hồ Xuân Hương về đêm. \r\nNghỉ đêm tại Đà Lạt.\r\n\r\n', '5bfe82e6882b4-a.jpg', 1500000, 1000000, 'Đà Nẵng', '2018-11-16 01:10:18');
 
 --
 -- Indexes for dumped tables
@@ -361,7 +363,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `chitietdat`
 --
 ALTER TABLE `chitietdat`
-  MODIFY `MaDat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaDat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -379,13 +381,13 @@ ALTER TABLE `dattour`
 -- AUTO_INCREMENT for table `khoihanh`
 --
 ALTER TABLE `khoihanh`
-  MODIFY `MaNgaykh` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaNgaykh` int(25) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `phanhoi`
 --
 ALTER TABLE `phanhoi`
-  MODIFY `MaPH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaPH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `thanhvien`

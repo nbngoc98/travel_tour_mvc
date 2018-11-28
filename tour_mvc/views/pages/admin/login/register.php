@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Register</title>
-	<link rel="stylesheet" type="text/css" href="register.css">
+	<link rel="stylesheet" type="text/css" href="public/css/register.css">
 </head>
 <body>
 	<?php 
